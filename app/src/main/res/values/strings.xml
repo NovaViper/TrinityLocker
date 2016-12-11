@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Trinity Locker</string>
+    <string name="description_slogan">The ultimate lockscreen that you make!</string>
+    <string name="start">Start</string>
+    <string name="title_activity_main_screen">MainScreenActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Google Play Services error for Toast -->
+    <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+
+    <!-- Rationale for asking for Contacts -->
+    <string name="contacts_permission_rationale">Contacts access is needed in order to retrieve your email address.</string>
+
+    <string name="loading">Loading…</string>
+
+</resources>
