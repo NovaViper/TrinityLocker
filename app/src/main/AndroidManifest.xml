@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".BootUpActivity"
+            android:name=".startup.BootUpActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,10 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseSignInActivity" />
-        <activity android:name=".ShowSignInActivity" />
+        <activity android:name=".startup.ChooseSignInActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".MainScreenActivity"
+            android:name=".startup.ShowSignInActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".core.MainScreenActivity"
             android:label="@string/title_activity_main_screen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@mipmap/ic_launcher"
-        android:id="@+id/imageView3"
+        android:id="@+id/bootimage"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
@@ -19,5 +19,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        tools:ignore="ContentDescription" />
 </android.support.constraint.ConstraintLayout>

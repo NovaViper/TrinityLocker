@@ -1,4 +1,4 @@
-package com.nova.apps.trinitylocker;
+package com.nova.apps.trinitylocker.core;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.nova.apps.trinitylocker.R;
 
 public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

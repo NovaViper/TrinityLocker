@@ -1,12 +1,14 @@
-package com.nova.apps.trinitylocker;
+package com.nova.apps.trinitylocker.startup;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
@@ -20,7 +22,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.Status;
+import com.nova.apps.trinitylocker.R;
+import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 
 /**
  * Activity to demonstrate basic retrieval of the Google user's ID, email address, and basic
@@ -34,22 +37,21 @@ public class ChooseSignInActivity extends AppCompatActivity implements
     private static final int RC_SIGN_IN = 9001;
 
     private GoogleApiClient mGoogleApiClient;
-    private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
+    private GoogleSignInOptions gso;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_sign_in);
 
-        // Button listeners
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
-
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
+                .requestScopes(new Scope(Scopes.PLUS_LOGIN))
                 .requestEmail()
                 .build();
 
@@ -60,17 +62,12 @@ public class ChooseSignInActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        // Customize sign-in button. The sign-in button can be displayed in
-        // multiple sizes and color schemes. It can also be contextually
-        // rendered based on the requested scopes. For example. a red button may
-        // be displayed when Google+ scopes are requested, but a white button
-        // may be displayed when only basic profile is requested. Try adding the
-        // Scopes.PLUS_LOGIN scope to the GoogleSignInOptions to see the
-        // difference.
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signInButton.setScopes(gso.getScopeArray());
+        // Button creation
+        createSignInButton(R.id.google_sign_in_button);
+        createButton(R.id.create_account_button);
+        createButton(R.id.sign_in_trinity_button);
     }
+
 
     @Override
     public void onStart() {
@@ -98,6 +95,7 @@ public class ChooseSignInActivity extends AppCompatActivity implements
         }
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -112,25 +110,20 @@ public class ChooseSignInActivity extends AppCompatActivity implements
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
-            String personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
-
-            Intent intent = new Intent(this, ShowSignInActivity.class);
-            Bundle b = new Bundle();
-            b.putInt("key", 1); //Your id
-            intent.putExtras(b); //Put your id to your next Intent
-            startActivity(intent);
-            finish();
-
+            setSignInType(result, "google");
         } else {
-            // Signed out, show unauthenticated UI.
+
         }
+    }
+
+    private void setSignInType(GoogleSignInResult result, String signInType){
+        GoogleSignInAccount acct = result.getSignInAccount();
+        Intent i = new Intent(getApplicationContext(), ShowSignInActivity.class);
+        i.putExtra("SignInType", signInType);
+        Log.d(TAG, "Set Sign In Type: " + signInType);
+        GoogleSignInSingleton account = GoogleSignInSingleton.getInstance(acct);
+        startActivity(i);
+        finish();
     }
 
     private void signIn() {
@@ -161,11 +154,28 @@ public class ChooseSignInActivity extends AppCompatActivity implements
         }
     }
 
+    public void createSignInButton(int id) {
+
+        SignInButton signInButton = (SignInButton)findViewById(id);
+        signInButton.setSize(SignInButton.SIZE_WIDE);
+        signInButton.setOnClickListener(this);
+        signInButton.setScopes(gso.getScopeArray());
+    }
+
+    public void createButton(int id){
+        Button button = (Button)findViewById(id);
+        button.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
+            case R.id.google_sign_in_button:
                 signIn();
+                break;
+            case R.id.sign_in_trinity_button:
+                break;
+            case R.id.create_account_button:
                 break;
         }
     }

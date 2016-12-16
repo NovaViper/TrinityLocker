@@ -15,6 +15,11 @@
     <!-- Rationale for asking for Contacts -->
     <string name="contacts_permission_rationale">Contacts access is needed in order to retrieve your email address.</string>
 
-    <string name="loading">Loading…</string>
+    <string name="loading">Loading...</string>
+    <string name="startAppWithGoogle">Starting Trinity Locker with Google+</string>
+    <string name="startAppWithFacebook">Starting Trinity Locker with Facebook</string>
+    <string name="startAppWithAccount">Starting Trinity Locker with %i</string>
+    <string name="getting_started">Get Started</string>
+    <string name="create_account_button_text">Create an account</string>
 
 </resources>
