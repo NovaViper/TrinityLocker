@@ -22,4 +22,10 @@
     <string name="getting_started">Get Started</string>
     <string name="create_account_button_text">Create an account</string>
 
+    <string name="nav_lock_profile_text">Lock Profiles</string>
+    <string name="nav_visual_text">Visual Settings</string>
+    <string name="nav_notify_text">Notification Settings</string>
+    <string name="nav_security_text">Security</string>
+    <string name="nav_misc_text">Miscellaneous</string>
+
 </resources>
