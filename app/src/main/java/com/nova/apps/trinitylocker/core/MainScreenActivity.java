@@ -51,10 +51,10 @@ public class MainScreenActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 	    String s = getIntent().getExtras().getString("SignInType");
-	    checkAccountSignIn(s);
+	    checkAccountSignIn(s, navigationView);
     }
 
-	private void checkAccountSignIn(String signInType) {
+	private void checkAccountSignIn(String signInType, NavigationView navView) {
 		if (String.valueOf(signInType).matches("google")) {
 			//GoogleSignInSingleton signInSingleton = GoogleSignInSingleton.getInstance(null);
 			//GoogleSignInAccount acct = signInSingleton.getGoogleSignIn();
@@ -64,13 +64,14 @@ public class MainScreenActivity extends AppCompatActivity
 			String personEmail = googleAccount.getEmail();
 			Uri personPhoto = googleAccount.getPhotoUrl();
 
-			profilePic = (ImageView) findViewById(R.id.navProfilePic);
-			accountName = (TextView) findViewById(R.id.navProfileName);
-			accountEmail = (TextView) findViewById(R.id.navProfileEmail);
+			View header = navView.getHeaderView(0);
+			profilePic= (ImageView) header.findViewById(R.id.navProfilePic);
+			accountName = (TextView) header.findViewById(R.id.navProfileName);
+			accountEmail = (TextView) header.findViewById(R.id.navProfileEmail);
 
 			//Set Stuff for Google Sign In
 			Glide.with(getApplicationContext()).load(personPhoto)
-					.thumbnail(0.5f)
+					.thumbnail(0.1f)
 					.crossFade()
 					.diskCacheStrategy(DiskCacheStrategy.ALL)
 					.into(profilePic);
