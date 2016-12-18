@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/navProfilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -24,10 +24,11 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:id="@+id/navProfileName" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/navProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="android.studio@android.com" />

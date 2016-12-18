@@ -110,18 +110,19 @@ public class ChooseSignInActivity extends AppCompatActivity implements
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            setSignInType(result, "google");
+	        setGoogleSignIn(result, "google");
         } else {
 
         }
     }
 
-    private void setSignInType(GoogleSignInResult result, String signInType){
+    private void setGoogleSignIn(GoogleSignInResult result, String signInType){
         GoogleSignInAccount acct = result.getSignInAccount();
         Intent i = new Intent(getApplicationContext(), ShowSignInActivity.class);
         i.putExtra("SignInType", signInType);
+	    i.putExtra("Account", acct);
         Log.d(TAG, "Set Sign In Type: " + signInType);
-        GoogleSignInSingleton account = GoogleSignInSingleton.getInstance(acct);
+        //GoogleSignInSingleton account = GoogleSignInSingleton.getInstance(acct);
         startActivity(i);
         finish();
     }

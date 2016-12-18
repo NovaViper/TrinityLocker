@@ -38,7 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".core.MainScreenActivity"
-            android:label="@string/title_activity_main_screen"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

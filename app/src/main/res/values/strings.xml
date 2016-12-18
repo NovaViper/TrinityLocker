@@ -28,4 +28,7 @@
     <string name="nav_security_text">Security</string>
     <string name="nav_misc_text">Miscellaneous</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

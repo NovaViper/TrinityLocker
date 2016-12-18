@@ -32,17 +32,19 @@ public class ShowSignInActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_sign_in);
 
-        String s = getIntent().getExtras().getString("SignInType");
-        checkAccountSignIn(s);
+        String signIn = getIntent().getExtras().getString("SignInType");
+        checkAccountSignIn(signIn);
     }
 
     private void checkAccountSignIn(String signInType){
         if(String.valueOf(signInType).matches("google")){
-            GoogleSignInSingleton signInSingleton = GoogleSignInSingleton.getInstance(null);
-            GoogleSignInAccount acct = signInSingleton.getGoogleSignIn();
-            String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
-            Uri personPhoto = acct.getPhotoUrl();
+            //GoogleSignInSingleton signInSingleton = GoogleSignInSingleton.getInstance(null);
+            //GoogleSignInAccount acct = signInSingleton.getGoogleSignIn();
+	        GoogleSignInAccount googleAccount = getIntent().getExtras().getParcelable("Account");
+
+            String personName = googleAccount.getDisplayName();
+            String personEmail = googleAccount.getEmail();
+            Uri personPhoto = googleAccount.getPhotoUrl();
 
             profilePic = (ImageView)findViewById(R.id.profileImage);
             startApp = (TextView)findViewById(R.id.startAppLabel);
@@ -59,28 +61,20 @@ public class ShowSignInActivity extends AppCompatActivity implements View.OnClic
             startApp.setText(R.string.startAppWithGoogle);
             accountName.setText(personName);
             accountEmail.setText(personEmail);
+            getStarted.setEnabled(false);
+
+	        //getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isfirstfrun", false).commit();
+	        Intent i = new Intent(getApplicationContext(), MainScreenActivity.class);
+	        i.putExtra("SignInType", signInType);
+	        i.putExtra("Account", googleAccount);
+	        startActivity(i);
+	        finish();
 
         }else if(String.valueOf(signInType).matches("facebook")){
 
         }else{
 
         }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                    //getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isfirstfrun", false).commit();
-                    Intent i = new Intent(getApplicationContext(), MainScreenActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 
     @Override
