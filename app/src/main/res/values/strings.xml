@@ -2,12 +2,6 @@
     <string name="app_name">Trinity Locker</string>
     <string name="description_slogan">The ultimate lockscreen that you make!</string>
     <string name="start">Start</string>
-    <string name="title_activity_main_screen">MainScreenActivity</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
 
     <!-- Google Play Services error for Toast -->
     <string name="play_services_error_fmt">Google Play Services Error: %i</string>
@@ -22,13 +16,35 @@
     <string name="getting_started">Get Started</string>
     <string name="create_account_button_text">Create an account</string>
 
+    <!-- Activity Strings -->
+    <string name="title_activity_main_screen">Trinity Locker Settings</string>
+
+
+    <!-- Navigation Strings -->
+
     <string name="nav_lock_profile_text">Lock Profiles</string>
-    <string name="nav_visual_text">Visual Settings</string>
-    <string name="nav_notify_text">Notification Settings</string>
+    <string name="nav_visual_text">Visual</string>
+    <string name="nav_notify_text">Notification</string>
     <string name="nav_security_text">Security</string>
     <string name="nav_misc_text">Miscellaneous</string>
+    <string name="nav_tips_tricks_text">Tips and Tricks</string>
+    <string name="nav_backup_restore_text">Backup/Restore</string>
+    <string name="nav_about_text">About Trinity Locker</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Lock Profiles</item>
+        <item>Visual</item>
+        <item>Notification</item>
+        <item>Security</item>
+        <item>Miscellaneous</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open drawer</string>
+    <string name="navigation_drawer_close">Close drawer</string>
+
+    <string name="action_rate">Rate on Google Play</string>
+    <string name="action_support">Email Me</string>
+    <string name="action_share">Share</string>
 
 </resources>

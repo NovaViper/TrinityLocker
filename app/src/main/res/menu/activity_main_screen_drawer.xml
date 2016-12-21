@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+            android:id="@+id/group1"
+            android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_lock_profile"
-            android:icon="@drawable/ic_nav_lock_profile"
-            android:title="@string/nav_lock_profile_text" />
+                android:id="@+id/nav_lock_profile"
+                android:icon="@drawable/ic_nav_lock_profile"
+                android:title="@string/nav_lock_profile_text" />
         <item
-            android:id="@+id/nav_visual"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/nav_visual_text" />
+                android:id="@+id/nav_visual"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="@string/nav_visual_text" />
         <item
-            android:id="@+id/nav_notify"
-            android:icon="@drawable/ic_nav_notify"
-            android:title="@string/nav_notify_text" />
+                android:id="@+id/nav_notify"
+                android:icon="@drawable/ic_nav_notify"
+                android:title="@string/nav_notify_text" />
         <item
-            android:id="@+id/nav_security"
-            android:icon="@drawable/ic_nav_security"
-            android:title="@string/nav_security_text" />
+                android:id="@+id/nav_security"
+                android:icon="@drawable/ic_nav_security"
+                android:title="@string/nav_security_text" />
         <item
-            android:id="@+id/nav_misc"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/nav_misc_text" />
+                android:id="@+id/nav_misc"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/nav_misc_text" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group
+            android:id="@+id/group2"
+            android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_backup_restore"
+                android:title="@string/nav_backup_restore_text" />
+        <item
+                android:id="@+id/nav_tips_tricks"
+                android:title="@string/nav_tips_tricks_text" />
+        <item
+                android:id="@+id/nav_about_app"
+                android:title="@string/nav_about_text" />
+
+    </group>
 
 </menu>

@@ -14,14 +14,10 @@ import com.nova.apps.trinitylocker.R;
  */
 public class LockProfileOptionFragment extends Fragment {
 
-	View myView;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		myView = inflater.inflate(R.layout.fragment_lock_profile_option, container, false);
-
-		return myView;
+		return inflater.inflate(R.layout.fragment_lock_profile_option, container, false);
 	}
 
 }
