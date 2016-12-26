@@ -30,12 +30,12 @@ import com.nova.apps.trinitylocker.core.fragment.NotificationOptionFragment;
 import com.nova.apps.trinitylocker.core.fragment.SecurityOptionFragment;
 import com.nova.apps.trinitylocker.core.fragment.VisualOptionFragment;
 import com.nova.apps.trinitylocker.util.CircleTransform;
+import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 
-public class MainScreenActivity extends AppCompatActivity{
+public class MainScreenActivity extends AppCompatActivity {
 
 	private NavigationView navigationView;
 	private DrawerLayout drawer;
-	private View navHeader;
 	private ImageView profilePic, headerBackground;
 	private TextView accountName, accountEmail;
 	private Toolbar toolbar;
@@ -63,33 +63,33 @@ public class MainScreenActivity extends AppCompatActivity{
 
 
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_main_screen);
-	    toolbar = (Toolbar) findViewById(R.id.toolbar);
-	    setSupportActionBar(toolbar);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main_screen);
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
-	    mHandler = new Handler();
+		mHandler = new Handler();
 
-	    drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-	    navigationView = (NavigationView) findViewById(R.id.nav_view);
+		drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-	    //Load nav menu header data using the sign in information
-	    String s = getIntent().getExtras().getString("SignInType");
-	    checkAccountSignIn(s);
+		//Load nav menu header data using the sign in information
+		//String s = getIntent().getExtras().getString("SignInType");
+		checkAccountSignIn();
 
-	    // load toolbar titles from string resources
-	    activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+		// load toolbar titles from string resources
+		activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-	    // initializing navigation menu
-	    setUpNavigationView();
+		// initializing navigation menu
+		setUpNavigationView();
 
 		if (savedInstanceState == null) {
-		    navItemIndex = 0;
-		    CURRENT_TAG = TAG_LOCKPROFILE;
-		    loadHomeFragment();
-	    }
-    }
+			navItemIndex = 0;
+			CURRENT_TAG = TAG_LOCKPROFILE;
+			loadHomeFragment();
+		}
+	}
 
 	/***
 	 * Returns respected fragment that user
@@ -139,8 +139,8 @@ public class MainScreenActivity extends AppCompatActivity{
 		invalidateOptionsMenu();
 	}
 
-	private Fragment getHomeFragment(){
-		switch(navItemIndex){
+	private Fragment getHomeFragment() {
+		switch (navItemIndex) {
 			case 0:
 				//Lock Proifle Settings Fragment
 				LockProfileOptionFragment lockerFragment = new LockProfileOptionFragment();
@@ -166,49 +166,46 @@ public class MainScreenActivity extends AppCompatActivity{
 		}
 	}
 
-	private void setActionBarTitle(){
+	private void setActionBarTitle() {
 		getSupportActionBar().setTitle(activityTitles[navItemIndex]);
 	}
 
-	private void selectNavMenu(){
+	private void selectNavMenu() {
 		navigationView.getMenu().getItem(navItemIndex).setCheckable(true);
 	}
 
-	private void checkAccountSignIn(String signInType) {
-		if (String.valueOf(signInType).matches("google")) {
-			//GoogleSignInSingleton signInSingleton = GoogleSignInSingleton.getInstance(null);
-			//GoogleSignInAccount acct = signInSingleton.getGoogleSignIn();
-			GoogleSignInAccount googleAccount = getIntent().getExtras().getParcelable("Account");
+	private void checkAccountSignIn() {
+		GoogleSignInSingleton signInSingleton = GoogleSignInSingleton.getInstance(null);
+		GoogleSignInAccount googleAccount = signInSingleton.getGoogleSignIn();
+		//GoogleSignInAccount googleAccount = getIntent().getExtras().getParcelable("Account");
 
-			String personName = googleAccount.getDisplayName();
-			String personEmail = googleAccount.getEmail();
-			Uri personPhoto = googleAccount.getPhotoUrl();
+		String personName = googleAccount.getDisplayName();
+		String personEmail = googleAccount.getEmail();
+		Uri personPhoto = googleAccount.getPhotoUrl();
 
-			View header = navigationView.getHeaderView(0);
-			profilePic= (ImageView) header.findViewById(R.id.navProfilePic);
-			accountName = (TextView) header.findViewById(R.id.navProfileName);
-			accountEmail = (TextView) header.findViewById(R.id.navProfileEmail);
+		View header = navigationView.getHeaderView(0);
+		profilePic = (ImageView) header.findViewById(R.id.navProfilePic);
+		accountName = (TextView) header.findViewById(R.id.navProfileName);
+		accountEmail = (TextView) header.findViewById(R.id.navProfileEmail);
 
-			//Set Stuff for Google Sign In
-			Glide.with(this).load(personPhoto)
-					.crossFade()
-					.thumbnail(0.5f)
-					.bitmapTransform(new CircleTransform(this))
-					.diskCacheStrategy(DiskCacheStrategy.ALL)
-					.into(profilePic);
-			//Load header background image
+		//Set Stuff for Google Sign In
+		Glide.with(this).load(personPhoto)
+				.crossFade()
+				.thumbnail(0.5f)
+				.bitmapTransform(new CircleTransform(this))
+				.diskCacheStrategy(DiskCacheStrategy.ALL)
+				.into(profilePic);
+		//Load header background image
 			/*Glide.with(this).load(urlNavHeaderBg)
 					.crossFade()
 					.diskCacheStrategy(DiskCacheStrategy.ALL)
 					.into(imgNavHeaderBg);*/
-			accountName.setText(personName);
-			accountEmail.setText(personEmail);
+		accountName.setText(personName);
+		accountEmail.setText(personEmail);
+	}
 
-		} else if (String.valueOf(signInType).matches("facebook")) {
-
-		} else {
-
-		}
+	private void setupAccountManageButton() { //TODO Need to finish implemented Account manage header settings
+		View header = navigationView.getHeaderView(0);
 	}
 
 	private void setUpNavigationView() {
@@ -242,7 +239,7 @@ public class MainScreenActivity extends AppCompatActivity{
 						navItemIndex = 4;
 						CURRENT_TAG = TAG_MISC;
 						break;
-					case R.id.nav_tips_tricks:
+					case R.id.nav_tips_tricks: //TODO add activities here
 						// launch new intent instead of loading fragment
 						//startActivity(new Intent(MainScreenActivity.this, AboutUsActivity.class));
 						drawer.closeDrawers();
@@ -298,50 +295,57 @@ public class MainScreenActivity extends AppCompatActivity{
 		actionBarDrawerToggle.syncState();
 	}
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-	    if (drawer.isDrawerOpen(GravityCompat.START)) {
-		    drawer.closeDrawer(GravityCompat.START);
-		    return;
-	    }
+	@Override
+	public void onBackPressed() {
+		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		if (drawer.isDrawerOpen(GravityCompat.START)) {
+			drawer.closeDrawer(GravityCompat.START);
+			return;
+		}
 
-	    // This code loads home fragment when back key is pressed when user is in other fragment than home
-	    if (shouldLoadHomeFragOnBackPress) {
-		    // checking if user is on other navigation menu
-		    // rather than home
-		    if (navItemIndex != 0) {
-			    navItemIndex = 0;
-			    CURRENT_TAG = TAG_LOCKPROFILE;
-			    loadHomeFragment();
-			    return;
-		    }
-	    }
+		// This code loads home fragment when back key is pressed when user is in other fragment than home
+		if (shouldLoadHomeFragOnBackPress) {
+			// checking if user is on other navigation menu
+			// rather than home
+			if (navItemIndex != 0) {
+				navItemIndex = 0;
+				CURRENT_TAG = TAG_LOCKPROFILE;
+				loadHomeFragment();
+				return;
+			}
+		}
 
-	    super.onBackPressed();
-    }
+		super.onBackPressed();
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-	    return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main_menu, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_rate) {
-            return true;
-        }else if(id == R.id.action_support){
-	        return true;
-        }
+		//noinspection SimplifiableIfStatement
+		if (id == R.id.action_share) { //TODO Change Intent
+			Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+			sharingIntent.setType("text/plain");
+			String shareBodyText = "Check it out. Your message goes here";
+			sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
+			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+			startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+		} else if (id == R.id.action_rate) {
+			return true;
+		} else if (id == R.id.action_support) {
+			return true;
+		}
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 }

@@ -6,15 +6,14 @@
     <!-- Google Play Services error for Toast -->
     <string name="play_services_error_fmt">Google Play Services Error: %i</string>
 
-    <!-- Rationale for asking for Contacts -->
-    <string name="contacts_permission_rationale">Contacts access is needed in order to retrieve your email address.</string>
+    <!-- Rationale for asking for the numerous permissions -->
+    <string name="permission_rationale">The app needs to be able to access your device in order to function like the system lockscreen and do more (The information will not be shared whatsoever!)</string>
 
     <string name="loading">Loading...</string>
-    <string name="startAppWithGoogle">Starting Trinity Locker with Google+</string>
-    <string name="startAppWithFacebook">Starting Trinity Locker with Facebook</string>
-    <string name="startAppWithAccount">Starting Trinity Locker with %i</string>
+    <string name="welcomeScreen">Welcome to Trinity Locker!</string>
     <string name="getting_started">Get Started</string>
-    <string name="create_account_button_text">Create an account</string>
+    <string name="signInScreenAccept">By pressing [Sign In], you hereby allow Trinity Locker to access your Google profile and Trinity Locker will proceed to setting up the basic functions of your locker.</string>
+    <string name="signInNote">Note: Your profile information will NOT be shared with anyone or any 3rd party, it is mainly for the use of backing up and restoring app settings</string>
 
     <!-- Activity Strings -->
     <string name="title_activity_main_screen">Trinity Locker Settings</string>
