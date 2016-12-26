@@ -19,7 +19,7 @@ If you notice any bugs in the app,please be sure to create an [issue](https://gi
 
 ##Contribution
 Since I am a solo developer, I will highly appreciate contributions from the community, rather they are big or small! Be warned though, contributions will be looked at, discussed and tested!
-To contribute, please fork this repository and contribute back using [pull requests](https://github.com/NovaViper/TrinityLocker/pulls)
+To contribute, please fork this repository and contribute back using [pull requests](https://github.com/NovaViper/TrinityLocker/pulls). Also, be sure to read the [Code Style Rules](https://github.com/NovaViper/TrinityLocker/wiki/TL-Code-Style-Rules) before making any changes
 
 ##Translation
 Want to help translate the app? Go right on ahead, I don't mind it! But be sure to take a look at the [Google Developers](https://developer.android.com/training/basics/supporting-devices/languages.html) website on how to add translations to the project and upload the changes to Github
