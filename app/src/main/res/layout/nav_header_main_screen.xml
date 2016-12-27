@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <ImageButton
-            android:id="@+id/button4"
+            android:id="@+id/manageAccountButton"
             android:src="@drawable/ic_arrow_drop_down_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

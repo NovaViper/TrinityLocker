@@ -37,7 +37,9 @@
                 android:name=".core.MainScreenActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".startup.setup.FirstSetupActivity"></activity>
+        <activity android:name=".startup.setup.FirstSetupActivity"
+                android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".core.AboutAppActivity"></activity>
     </application>
 
 </manifest>

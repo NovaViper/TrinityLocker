@@ -2,14 +2,9 @@ package com.nova.apps.trinitylocker.startup;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -27,13 +22,10 @@ import com.nova.apps.trinitylocker.util.AppLogger;
 import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 import com.nova.apps.trinitylocker.util.permission.PermissionActivity;
 
-/**
- * Activity to demonstrate basic retrieval of the Google user's ID, email address, and basic
- * profile, which also adds a request dialog to access the user's Google Drive.
- */
+
+//Based on Google's Sign In Example
 public class ChooseSignInActivity extends PermissionActivity implements
-		GoogleApiClient.OnConnectionFailedListener,
-		View.OnClickListener {
+		GoogleApiClient.OnConnectionFailedListener {
 	private static final int RC_SIGN_IN = 9001;
 	private static final int RC_PERMISSIONS = 1;
 
@@ -41,32 +33,34 @@ public class ChooseSignInActivity extends PermissionActivity implements
 	private ProgressDialog mProgressDialog;
 	private GoogleSignInOptions gso;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_sign_in);
 
-		// [START configure_signin]
-		// Configure sign-in to request the user's ID, email address, and basic
-		// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+		//Configure sign-in to request the user's ID, email address, and basic profile.
 		gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 				.requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
 				.requestScopes(new Scope(Scopes.PLUS_LOGIN))
 				.requestEmail()
 				.build();
 
-		// Build a GoogleApiClient with access to the Google Sign-In API and the
-		// options specified by gso.
 		mGoogleApiClient = new GoogleApiClient.Builder(this)
 				.enableAutoManage(this, this)
 				.addApi(Auth.GOOGLE_SIGN_IN_API, gso)
 				.build();
 
-		// Button creation
-		createSignInButton(R.id.google_sign_in_button);
+		createSignInButton(R.id.google_sign_in_button, new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				switch (view.getId()) {
+					case R.id.google_sign_in_button:
+						signIn();
+						break;
+				}
+			}
+		});
 	}
-
 
 	@Override
 	public void onStart() {
@@ -84,7 +78,7 @@ public class ChooseSignInActivity extends PermissionActivity implements
 		permissions.add(Manifest.permission.CAMERA);
 		permissions.add(Manifest.permission.GET_ACCOUNTS);
 
-		permissionUtils.check_permission(permissions, R.string.permission_rationale, RC_PERMISSIONS);
+		permissionUtils.checkPermissions(permissions, R.string.permission_rationale, RC_PERMISSIONS);
 
 		OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
 		if (opr.isDone()) {
@@ -108,12 +102,10 @@ public class ChooseSignInActivity extends PermissionActivity implements
 		}
 	}
 
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
 		if (requestCode == RC_SIGN_IN) {
 			GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 			handleSignInResult(result);
@@ -123,16 +115,16 @@ public class ChooseSignInActivity extends PermissionActivity implements
 	private void handleSignInResult(GoogleSignInResult result) {
 		AppLogger.debug("handleSignInResult:" + result.isSuccess());
 		if (result.isSuccess()) {
-			setUpSignIn(result);
+			setUpSignInAndFinish(result);
 		} else {
-
+			//TODO Add something here
 		}
 	}
 
-	private void setUpSignIn(GoogleSignInResult result) {
+	private void setUpSignInAndFinish(GoogleSignInResult result) { //TODO Save data in a better way
 		GoogleSignInAccount acct = result.getSignInAccount();
 		Intent i = new Intent(getApplicationContext(), FirstSetupActivity.class);
-		i.putExtra("Account", acct);
+		//i.putExtra("Account", acct);
 		GoogleSignInSingleton account = GoogleSignInSingleton.getInstance(acct);
 		startActivity(i);
 		finish();
@@ -145,8 +137,6 @@ public class ChooseSignInActivity extends PermissionActivity implements
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-		// An unresolvable error has occurred and Google APIs (including Sign-In) will not
-		// be available.
 		AppLogger.debug("onConnectionFailed:" + connectionResult);
 	}
 
@@ -156,7 +146,6 @@ public class ChooseSignInActivity extends PermissionActivity implements
 			mProgressDialog.setMessage(getString(R.string.loading));
 			mProgressDialog.setIndeterminate(true);
 		}
-
 		mProgressDialog.show();
 	}
 
@@ -166,20 +155,10 @@ public class ChooseSignInActivity extends PermissionActivity implements
 		}
 	}
 
-	public void createSignInButton(int id) {
-
+	public void createSignInButton(int id, View.OnClickListener listener) {
 		SignInButton signInButton = (SignInButton) findViewById(id);
 		signInButton.setSize(SignInButton.SIZE_WIDE);
-		signInButton.setOnClickListener(this);
+		signInButton.setOnClickListener(listener);
 		signInButton.setScopes(gso.getScopeArray());
-	}
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.google_sign_in_button:
-				signIn();
-				break;
-		}
 	}
 }

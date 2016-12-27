@@ -65,29 +65,28 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/sloganTextView"
             android:text="@string/signInScreenAccept"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_bias="0.22000003"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="1.0" />
+            android:textAlignment="textStart"
+            android:gravity="start"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp" />
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="384dp"
             android:layout_height="wrap_content"
             android:id="@+id/disclaimerNoteTextView"
-            android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/acceptStartTextView"
             app:layout_constraintBottom_toTopOf="@+id/google_sign_in_button"
-            android:layout_marginBottom="8dp"
             app:layout_constraintVertical_bias="0.050000012"
             android:textSize="12sp"
             android:text="@string/signInNote"
-            android:textAlignment="textStart" 
-            android:layout_gravity="start"/>
+            android:textAlignment="viewStart"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp" />
 
     <com.google.android.gms.common.SignInButton
             android:id="@+id/google_sign_in_button"

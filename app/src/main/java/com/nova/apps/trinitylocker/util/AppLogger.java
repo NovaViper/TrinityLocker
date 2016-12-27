@@ -20,29 +20,26 @@ public final class AppLogger {
 	private static boolean disableLogging;
 
 	/**
-	 * Used to disables logs for VERBOSE, DEBUG, INFO, WARN levels
-	 * Is called once and preferably from the class that extends 'Application'
+	 * Disables logs for VERBOSE, DEBUG, INFO, WARN levels; called once and preferably from a class that extends 'Application'
 	 * This is useful when you might want to disable log printing before publishing app to the PlayStore
-	 * This will disable printing log for VERBOSE, DEBUG, INFO, WARN level
 	 *
-	 * @param value Setting value to true will disable printing logs (Default false)
+	 * @param value Setting value to true will disable printing logs (Default: false)
 	 */
 	public static void disableLogging(boolean value) {
 		AppLogger.disableLogging = value;
 	}
 
-
 	public static void verbose(String format, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.v(TAG, format(format, args));
+		Log.v(TAG, formatMessage(format, args));
 	}
 
 
 	public static void verbose(String msg, Throwable e) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
@@ -50,23 +47,23 @@ public final class AppLogger {
 	}
 
 	public static void verbose(String format, Throwable e, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.v(TAG, format(format, args), e);
+		Log.v(TAG, formatMessage(format, args), e);
 	}
 
 	public static void debug(String format, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.d(TAG, format(format, args));
+		Log.d(TAG, formatMessage(format, args));
 	}
 
 	public static void debug(String msg, Throwable e) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
@@ -75,23 +72,23 @@ public final class AppLogger {
 
 
 	public static void debug(String format, Throwable e, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.d(TAG, format(format, args), e);
+		Log.d(TAG, formatMessage(format, args), e);
 	}
 
 	public static void warn(String format, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.w(TAG, format(format, args));
+		Log.w(TAG, formatMessage(format, args));
 	}
 
 	public static void warn(String msg, Throwable e) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
@@ -100,23 +97,23 @@ public final class AppLogger {
 
 
 	public static void warn(String format, Throwable e, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.w(TAG, format(format, args), e);
+		Log.w(TAG, formatMessage(format, args), e);
 	}
 
 	public static void info(String format, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.i(TAG, format(format, args));
+		Log.i(TAG, formatMessage(format, args));
 	}
 
 	public static void info(String msg, Throwable e) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
@@ -124,15 +121,15 @@ public final class AppLogger {
 	}
 
 	public static void info(String format, Throwable e, Object... args) {
-		if(disableLogging){
+		if (disableLogging) {
 			return;
 		}
 
-		Log.i(TAG, format(format, args), e);
+		Log.i(TAG, formatMessage(format, args), e);
 	}
 
 	public static void error(String format, Object... args) {
-		Log.e(TAG, format(format, args));
+		Log.e(TAG, formatMessage(format, args));
 	}
 
 	public static void error(String msg, Throwable e) {
@@ -140,23 +137,23 @@ public final class AppLogger {
 	}
 
 	public static void error(String format, Throwable e, Object... args) {
-		Log.e(TAG, format(format, args), e);
+		Log.e(TAG, formatMessage(format, args), e);
 	}
 
 	public void wtf(String message, Object... args) {
-		Log.wtf(TAG, format(message, args));
+		Log.wtf(TAG, formatMessage(message, args));
 	}
 
 	@Deprecated
 	public void wtf(Throwable e, String message, Object... args) {
-		Log.wtf(TAG, format(message, args), e);
+		Log.wtf(TAG, formatMessage(message, args), e);
 	}
 
-	private static String format(String format, Object... args) {
+	private static String formatMessage(String format, Object... args) {
 		try {
 			return String.format(format == null ? EMPTY : format, args);
 		} catch (RuntimeException e) {
-			AppLogger.warn(TAG, "Format Error. Reason=%s, Format=%s", e.getMessage(), format);
+			AppLogger.warn(TAG, "Formating Error. Reason=%s, Format=%s", e.getMessage(), format);
 			return String.format(EMPTY, format);
 		}
 	}

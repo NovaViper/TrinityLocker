@@ -24,41 +24,41 @@ public class PermissionUtils {
 	//The Context of the Activity
 	Context context;
 	//The Current Activity
-	Activity current_activity;
+	Activity currentActivity;
 	//The Permission Results callback
 	PermissionResultCallback permissionResultCallback;
 
 	ArrayList<String> permission_list = new ArrayList<>();
 	ArrayList<String> listPermissionsNeeded = new ArrayList<>();
-	int dialog_content;
-	int req_code;
+	int dialogContent;
+	int reqCode;
 
 	public PermissionUtils(Context context) {
 		this.context = context;
-		this.current_activity = (Activity) context;
+		this.currentActivity = (Activity) context;
 
 		permissionResultCallback = (PermissionResultCallback) context;
 	}
 
 	/**
-	 * Check the API Level (Android version) & Permission
+	 * Checks the API Level (Android version) & the permissions
 	 *
-	 * @param permissions    The permissions
-	 * @param dialog_content the dialog of the permissions
-	 * @param request_code   The request code to call
+	 * @param permissions   The permissions
+	 * @param dialogContent the dialog of the permissions
+	 * @param requestCode   The request code to call
 	 */
-	public void check_permission(ArrayList<String> permissions, int dialog_content, int request_code) {
+	public void checkPermissions(ArrayList<String> permissions, int dialogContent, int requestCode) {
 		this.permission_list = permissions;
-		this.dialog_content = dialog_content;
-		this.req_code = request_code;
+		this.dialogContent = dialogContent;
+		this.reqCode = requestCode;
 
 		if (Build.VERSION.SDK_INT >= 23) {
-			if (checkAndRequestPermissions(permissions, request_code)) {
-				permissionResultCallback.PermissionGranted(request_code);
+			if (checkAndRequestPermissions(permissions, requestCode)) {
+				permissionResultCallback.PermissionGranted(requestCode);
 				AppLogger.info("All permissions granted, proceeding to callback");
 			}
 		} else {
-			permissionResultCallback.PermissionGranted(request_code);
+			permissionResultCallback.PermissionGranted(requestCode);
 			AppLogger.info("All permissions granted, proceeding to callback");
 		}
 	}
@@ -66,21 +66,21 @@ public class PermissionUtils {
 	/**
 	 * Check and request the Permissions
 	 *
-	 * @param permissions  The permissions
-	 * @param request_code
+	 * @param permissions The permissions
+	 * @param requestCode
 	 * @return
 	 */
-	public boolean checkAndRequestPermissions(ArrayList<String> permissions, int request_code) {
+	public boolean checkAndRequestPermissions(ArrayList<String> permissions, int requestCode) {
 		if (permissions.size() > 0) {
 			listPermissionsNeeded = new ArrayList<>();
 			for (int i = 0; i < permissions.size(); i++) {
-				int hasPermission = ContextCompat.checkSelfPermission(current_activity, permissions.get(i));
+				int hasPermission = ContextCompat.checkSelfPermission(currentActivity, permissions.get(i));
 				if (hasPermission != PackageManager.PERMISSION_GRANTED) {
 					listPermissionsNeeded.add(permissions.get(i));
 				}
 			}
 			if (!listPermissionsNeeded.isEmpty()) {
-				ActivityCompat.requestPermissions(current_activity, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), request_code);
+				ActivityCompat.requestPermissions(currentActivity, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), requestCode);
 				return false;
 			}
 		}
@@ -105,45 +105,44 @@ public class PermissionUtils {
 					final ArrayList<String> pending_permissions = new ArrayList<>();
 					for (int i = 0; i < listPermissionsNeeded.size(); i++) {
 						if (perms.get(listPermissionsNeeded.get(i)) != PackageManager.PERMISSION_GRANTED) {
-							if (ActivityCompat.shouldShowRequestPermissionRationale(current_activity, listPermissionsNeeded.get(i)))
+							if (ActivityCompat.shouldShowRequestPermissionRationale(currentActivity, listPermissionsNeeded.get(i)))
 								pending_permissions.add(listPermissionsNeeded.get(i));
 							else {
 								AppLogger.info("Going to settings and waiting for user to enable permissions");
-								permissionResultCallback.NeverAskAgain(req_code);
-								Toast.makeText(current_activity, "Please go to settings and enable all permissions", Toast.LENGTH_LONG).show();
+								permissionResultCallback.NeverAskAgain(reqCode);
+								Toast.makeText(currentActivity, "Please go to settings and enable all permissions", Toast.LENGTH_LONG).show();
 								Intent intent = new Intent();
 								intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-								intent.setData(Uri.parse("package:" + current_activity.getPackageName()));
+								intent.setData(Uri.parse("package:" + currentActivity.getPackageName()));
 								intent.addCategory(Intent.CATEGORY_DEFAULT);
 								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								current_activity.startActivity(intent);
+								currentActivity.startActivity(intent);
 								return;
 							}
 						}
 					}
 					if (pending_permissions.size() > 0) {
-						showMessageOKCancel(dialog_content,
+						showMessageOKCancel(dialogContent,
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
-
 										switch (which) {
 											case DialogInterface.BUTTON_POSITIVE:
-												check_permission(permission_list, dialog_content, req_code);
+												checkPermissions(permission_list, dialogContent, reqCode);
 												break;
 											case DialogInterface.BUTTON_NEGATIVE:
 												AppLogger.info("Permission not fully given");
 												if (permission_list.size() == pending_permissions.size())
-													permissionResultCallback.PermissionDenied(req_code);
+													permissionResultCallback.PermissionDenied(reqCode);
 												else
-													permissionResultCallback.PartialPermissionGranted(req_code, pending_permissions);
+													permissionResultCallback.PartialPermissionGranted(reqCode, pending_permissions);
 												break;
 										}
 									}
 								});
 					} else {
 						AppLogger.info("All permissions granted, proceeding to next step");
-						permissionResultCallback.PermissionGranted(req_code);
+						permissionResultCallback.PermissionGranted(reqCode);
 					}
 				}
 				break;
@@ -157,7 +156,7 @@ public class PermissionUtils {
 	 * @param okListener
 	 */
 	private void showMessageOKCancel(int message, DialogInterface.OnClickListener okListener) {
-		new AlertDialog.Builder(current_activity)
+		new AlertDialog.Builder(currentActivity)
 				.setMessage(message)
 				.setPositiveButton("Ok", okListener)
 				.setNegativeButton("Cancel", okListener)
