@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -19,7 +20,7 @@ public class FirstSetupActivity extends AppIntro {
 
 		addSlide(new DisableSystemLockFragment());
 		addSlide(new EnableNotificationsFragment());
-		addSlide(AppIntroFragment.newInstance("Done!", "You have successfuly finished setting up Trinity Locker", com.github.paolorotolo.appintro.R.drawable.ic_done_white, getResources().getColor(R.color.colorAccent)));
+		addSlide(AppIntroFragment.newInstance("Done!", "You have successfuly finished setting up Trinity Locker", com.github.paolorotolo.appintro.R.drawable.ic_done_white, ResourcesCompat.getColor(getResources(), R.color.colorAccent, null)));
 
 		showStatusBar(false);
 		showSkipButton(false);
