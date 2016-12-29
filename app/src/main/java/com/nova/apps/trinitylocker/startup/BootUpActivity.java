@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.nova.apps.trinitylocker.R;
-import com.nova.apps.trinitylocker.core.MainScreenActivity;
+import com.nova.apps.trinitylocker.core.MainSettingsActivity;
 
 public class BootUpActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class BootUpActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }else {
-                        Intent i = new Intent(getApplicationContext(), MainScreenActivity.class);
+                        Intent i = new Intent(getApplicationContext(), MainSettingsActivity.class);
                         startActivity(i);
                         finish();
                     }

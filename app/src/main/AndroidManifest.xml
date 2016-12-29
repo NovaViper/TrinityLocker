@@ -34,12 +34,13 @@
                 android:name=".startup.ChooseSignInActivity"
                 android:theme="@style/AppTheme.NoActionBar" />
         <activity
-                android:name=".core.MainScreenActivity"
-                android:label="@string/app_name"
+                android:name=".startup.setup.FirstSetupActivity"
                 android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".startup.setup.FirstSetupActivity"
-                android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".core.AboutAppActivity"></activity>
+        <activity android:name=".core.AboutAppActivity" />
+        <activity
+                android:name=".core.MainSettingsActivity"
+                android:label="@string/title_activity_main_settings"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

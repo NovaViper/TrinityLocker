@@ -19,6 +19,7 @@ import com.google.android.gms.common.api.Scope;
 import com.nova.apps.trinitylocker.R;
 import com.nova.apps.trinitylocker.startup.setup.FirstSetupActivity;
 import com.nova.apps.trinitylocker.util.AppLogger;
+import com.nova.apps.trinitylocker.util.GoogleAPIClientSingleton;
 import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 import com.nova.apps.trinitylocker.util.permission.PermissionActivity;
 
@@ -41,7 +42,6 @@ public class ChooseSignInActivity extends PermissionActivity implements
 		//Configure sign-in to request the user's ID, email address, and basic profile.
 		gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 				.requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
-				.requestScopes(new Scope(Scopes.PLUS_LOGIN))
 				.requestEmail()
 				.build();
 
@@ -126,6 +126,7 @@ public class ChooseSignInActivity extends PermissionActivity implements
 		Intent i = new Intent(getApplicationContext(), FirstSetupActivity.class);
 		//i.putExtra("Account", acct);
 		GoogleSignInSingleton account = GoogleSignInSingleton.getInstance(acct);
+		GoogleAPIClientSingleton singleton = GoogleAPIClientSingleton.getInstance(mGoogleApiClient);
 		startActivity(i);
 		finish();
 	}

@@ -9,7 +9,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.nova.apps.trinitylocker.R;
-import com.nova.apps.trinitylocker.core.MainScreenActivity;
+import com.nova.apps.trinitylocker.core.MainSettingsActivity;
 
 public class FirstSetupActivity extends AppIntro {
 
@@ -20,7 +20,7 @@ public class FirstSetupActivity extends AppIntro {
 
 		addSlide(new DisableSystemLockFragment());
 		addSlide(new EnableNotificationsFragment());
-		addSlide(AppIntroFragment.newInstance("Done!", "You have successfuly finished setting up Trinity Locker", com.github.paolorotolo.appintro.R.drawable.ic_done_white, ResourcesCompat.getColor(getResources(), R.color.colorAccent, null)));
+		addSlide(AppIntroFragment.newInstance("Done!", "You have successfuly finished setting up Trinity Locker", R.drawable.ic_done_white, ResourcesCompat.getColor(getResources(), R.color.colorAccent, getTheme())));
 
 		showStatusBar(false);
 		showSkipButton(false);
@@ -37,7 +37,7 @@ public class FirstSetupActivity extends AppIntro {
 	@Override
 	public void onDonePressed(Fragment currentFragment) {
 		super.onDonePressed(currentFragment);
-		Intent i = new Intent(getApplicationContext(), MainScreenActivity.class);
+		Intent i = new Intent(getApplicationContext(), MainSettingsActivity.class);
 		startActivity(i);
 	}
 
