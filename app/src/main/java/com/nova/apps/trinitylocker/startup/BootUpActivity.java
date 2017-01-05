@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.nova.apps.trinitylocker.R;
 import com.nova.apps.trinitylocker.core.MainSettingsActivity;
+import com.nova.apps.trinitylocker.util.Constants;
 
 public class BootUpActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class BootUpActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(3000);
-                    Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isfirstfrun", true);
+                    Boolean isFirstRun = getSharedPreferences(Constants.preferenceKey, MODE_PRIVATE).getBoolean(Constants.preferenceFirstRun, true);
                     if(isFirstRun) {
                         Intent i = new Intent(getApplicationContext(), ChooseSignInActivity.class);
                         startActivity(i);

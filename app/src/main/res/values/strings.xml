@@ -25,7 +25,6 @@
     <string name="title_activity_main_screen">Trinity Locker Settings</string>
 
     <!-- Navigation Strings -->
-
     <string name="nav_lock_profile_text">Lock Profiles</string>
     <string name="nav_visual_text">Visual</string>
     <string name="nav_notify_text">Notification</string>
@@ -43,6 +42,11 @@
         <item>Security</item>
         <item>Miscellaneous</item>
     </string-array>
+
+    <string name="navHeaderSignOut">Sign out</string>
+    <string name ="debugSignOut">Successfully Signed Out!</string>
+    <string name="setupFinished">You have successfully finished setting up Trinity Locker</string>
+    <string name="setupDone">Done!</string>
 
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
