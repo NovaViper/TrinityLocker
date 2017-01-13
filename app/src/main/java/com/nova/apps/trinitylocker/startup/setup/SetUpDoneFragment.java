@@ -14,21 +14,11 @@ import android.widget.Button;
 import com.nova.apps.trinitylocker.R;
 
 
-public class EnableNotificationsFragment extends Fragment {
+public class SetUpDoneFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_enable_notifications, container, false);
-
-
-		//TODO Add more permission askers
-		Button signInButton = (Button) v.findViewById(R.id.enableNotifyBtn);
-		signInButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivityForResult(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS), 0);
-			}
-		});
+		View v = inflater.inflate(R.layout.fragment_set_up_done, container, false);
 
 		return v;
 	}

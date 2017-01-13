@@ -42,7 +42,7 @@
             android:text="@string/enableNotifyAccessBtnTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/disableSystemLockBtn"
+            android:id="@+id/enableNotifyBtn"
             android:textSize="14sp"
             android:gravity="center_vertical|center_horizontal" />
 

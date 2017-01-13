@@ -44,7 +44,7 @@
     </string-array>
 
     <string name="navHeaderSignOut">Sign out</string>
-    <string name ="debugSignOut">Successfully Signed Out!</string>
+    <string name="debugSignOut">Successfully Signed Out!</string>
     <string name="setupFinished">You have successfully finished setting up Trinity Locker</string>
     <string name="setupDone">Done!</string>
 

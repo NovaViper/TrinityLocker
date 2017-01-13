@@ -78,7 +78,21 @@ public class MainSettingsActivity extends AppCompatActivity {
 
 	}
 
-	private void createAccountHeader(GoogleSignInAccount googleAccount){
+	private void createAccountHeader(GoogleSignInAccount googleAccount) {
+
+		//initialize and create the image loader logic
+		DrawerImageLoader.init(new AbstractDrawerImageLoader() {
+			@Override
+			public void set(ImageView imageView, Uri uri, Drawable placeholder) {
+				Glide.with(imageView.getContext()).load(uri).placeholder(placeholder).into(imageView);
+			}
+
+			@Override
+			public void cancel(ImageView imageView) {
+				Glide.clear(imageView);
+			}
+		});
+
 		header = new AccountHeaderBuilder()
 				.withActivity(this)
 				.withTranslucentStatusBar(true)
@@ -106,21 +120,9 @@ public class MainSettingsActivity extends AppCompatActivity {
 				})
 				.build();
 
-	//initialize and create the image loader logic
-	DrawerImageLoader.init(new AbstractDrawerImageLoader() {
-		@Override
-		public void set(ImageView imageView, Uri uri, Drawable placeholder) {
-			Glide.with(imageView.getContext()).load(uri).placeholder(placeholder).into(imageView);
-		}
+	}
 
-		@Override
-		public void cancel(ImageView imageView) {
-			Glide.clear(imageView);
-		}
-	});
-}
-
-	private void createDrawer(Toolbar toolbar){
+	private void createDrawer(Toolbar toolbar) {
 		result = new DrawerBuilder()
 				.withActivity(this)
 				.withToolbar(toolbar)
