@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.nova.apps.trinitylocker.util.AlertDialogUtil;
 import com.nova.apps.trinitylocker.util.AppLogger;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class PermissionUtils {
 	ArrayList<String> listPermissionsNeeded = new ArrayList<>();
 	int dialogContent;
 	int reqCode;
+
+	AlertDialogUtil alertUtil = new AlertDialogUtil();
 
 	public PermissionUtils(Context context) {
 		this.context = context;
@@ -122,7 +125,7 @@ public class PermissionUtils {
 						}
 					}
 					if (pending_permissions.size() > 0) {
-						showMessageOKCancel(dialogContent,
+						alertUtil.showMessageOKCancel(currentActivity, dialogContent,
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
@@ -147,20 +150,5 @@ public class PermissionUtils {
 				}
 				break;
 		}
-	}
-
-	/**
-	 * Explain why the app needs permissions
-	 *
-	 * @param message
-	 * @param okListener
-	 */
-	private void showMessageOKCancel(int message, DialogInterface.OnClickListener okListener) {
-		new AlertDialog.Builder(currentActivity)
-				.setMessage(message)
-				.setPositiveButton("Ok", okListener)
-				.setNegativeButton("Cancel", okListener)
-				.create()
-				.show();
 	}
 }

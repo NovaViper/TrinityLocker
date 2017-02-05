@@ -14,12 +14,14 @@
     <string name="welcomeScreen">Welcome to Trinity Locker!</string>
     <string name="signInScreenAccept">By pressing [Sign In], you hereby allow Trinity Locker to access your Google profile and Trinity Locker will proceed to setting up the basic functions of your locker.</string>
     <string name="signInNote">Note: Your profile information will NOT be shared with anyone or any 3rd party, it is mainly for the use of backing up and restoring app settings</string>
-    <string name="disableSystemLockIntro">Disable System Lock in order to prevent unlocking two screens</string>
-    <string name="enableNotifyAccessIntro">Enable Notifications and Accessabilies so the app to effectively display notifications and intercept bypasses</string>
+    <string name="disableSystemLockIntro">Turn off System Lock\n</string>
+    <string name="enableNotifyAccessIntro">Allow Notifications/Accessibility\n</string>
+    <string name="setupDoneIntro">You are All Set!</string>
 
     <!--Button Strings-->
-    <string name="disableSystemLockBtnTxt">Turn Off System Lock</string>
-    <string name="enableNotifyAccessBtnTxt">Enable Notification and Accessability</string>
+    <string name="disableSystemLockBtnTxt">Click here to prevent from unlocking two screens (from both the system lock and app lock)</string>
+    <string name="enableNotifyAccessBtnTxt">Click here to allow the app effectively display notifications and intercept bypasses</string>
+    <string name="setupFinishedTxt">Trinity Locker setup successfully completed</string>
 
     <!-- Activity Strings -->
     <string name="title_activity_main_screen">Trinity Locker Settings</string>
@@ -45,8 +47,6 @@
 
     <string name="navHeaderSignOut">Sign out</string>
     <string name="debugSignOut">Successfully Signed Out!</string>
-    <string name="setupFinished">You have successfully finished setting up Trinity Locker</string>
-    <string name="setupDone">Done!</string>
 
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>

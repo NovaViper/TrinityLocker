@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.LayoutInflaterCompat;
+import android.view.View;
 
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -20,35 +23,33 @@ import com.nova.apps.trinitylocker.R;
 import com.nova.apps.trinitylocker.core.MainSettingsActivity;
 import com.nova.apps.trinitylocker.util.Constants;
 
-public class FirstSetupActivity extends AppIntro {
+import java.util.ArrayList;
 
-	IconicsDrawable doneButton = new IconicsDrawable(this)
-			.icon(GoogleMaterial.Icon.gmd_done)
-			.color(Color.RED)
-			.sizeDp(200);
-	/**
-	 * ATTENTION: This was auto-generated to implement the App Indexing API.
-	 * See https://g.co/AppIndexing/AndroidStudio for more information.
-	 */
-	private GoogleApiClient client;
+public class FirstSetupActivity extends AppIntro {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
-
 		super.onCreate(savedInstanceState);
 		setWizardMode(true);
 		//TODO Finish up Intro
 		addSlide(new DisableSystemLockFragment());
 		addSlide(new EnableNotificationsFragment());
-
-
+		addSlide(new LockProfilePickerFragment());
+		addSlide(new UnlockStylePickerFragment());
 		addSlide(new SetUpDoneFragment());
+
+		setColorTransitionsEnabled(true);
 
 		showStatusBar(false);
 		showSkipButton(false);
+	}
 
-		setDepthAnimation();
+	public void disableLock(View v) {
+		startActivityForResult(new Intent(Settings.ACTION_SECURITY_SETTINGS), 0);
+	}
+
+	public void enableAccess(View v) {
+		startActivityForResult(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS), 0);
 	}
 
 	@Override
