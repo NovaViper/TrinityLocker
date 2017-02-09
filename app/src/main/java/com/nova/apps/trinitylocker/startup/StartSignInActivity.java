@@ -1,30 +1,18 @@
 package com.nova.apps.trinitylocker.startup;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
+
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Scope;
 import com.nova.apps.trinitylocker.R;
 import com.nova.apps.trinitylocker.startup.setup.FirstSetupActivity;
-import com.nova.apps.trinitylocker.util.AppLogger;
 import com.nova.apps.trinitylocker.util.AuthManager;
-import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 import com.nova.apps.trinitylocker.util.permission.PermissionActivity;
 
-//Based on Google's Sign In Example
-public class ChooseSignInActivity extends PermissionActivity {
+public class StartSignInActivity extends PermissionActivity {
 	private static final int RC_PERMISSIONS = 1;
 
 	private AuthManager authManager;
@@ -32,7 +20,7 @@ public class ChooseSignInActivity extends PermissionActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_sign_in);
+		setContentView(R.layout.activity_start_sign_in);
 
 		//Configure sign-in to request the user's ID, email address, and basic profile.
 		authManager = AuthManager.getInstance();
@@ -82,5 +70,7 @@ public class ChooseSignInActivity extends PermissionActivity {
 		SignInButton signInButton = (SignInButton) findViewById(id);
 		signInButton.setSize(SignInButton.SIZE_WIDE);
 		signInButton.setOnClickListener(listener);
+		signInButton.setColorScheme(SignInButton.COLOR_DARK);
 	}
 }
+

@@ -1,5 +1,6 @@
 package com.nova.apps.trinitylocker.startup.setup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
 import com.nova.apps.trinitylocker.R;
 import com.nova.apps.trinitylocker.core.MainSettingsActivity;
@@ -30,18 +32,25 @@ public class FirstSetupActivity extends AppIntro {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+
 		setWizardMode(true);
 		//TODO Finish up Intro
 		addSlide(new DisableSystemLockFragment());
 		addSlide(new EnableNotificationsFragment());
-		addSlide(new LockProfilePickerFragment());
-		addSlide(new UnlockStylePickerFragment());
+		//addSlide(new LockProfilePickerFragment());
+		//addSlide(new UnlockStylePickerFragment());
 		addSlide(new SetUpDoneFragment());
 
 		setColorTransitionsEnabled(true);
 
 		showStatusBar(false);
 		showSkipButton(false);
+	}
+
+	@Override
+	protected void attachBaseContext(Context newBase) {
+		super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
 	}
 
 	public void disableLock(View v) {
@@ -55,7 +64,6 @@ public class FirstSetupActivity extends AppIntro {
 	@Override
 	public void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
-		// Do something when users tap on Skip button
 	}
 
 	@Override

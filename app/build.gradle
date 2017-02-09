@@ -25,11 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    //User created libraries
-    
-
-    //Google Library
-    
+    //User Created Libaries
     compile('com.mikepenz:materialdrawer:5.8.1@aar') {
         transitive = true
     }
@@ -39,11 +35,15 @@ dependencies {
     compile 'com.mikepenz:iconics-core:2.8.2@aar'
     compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
+    compile 'com.mikepenz:community-material-typeface:1.7.22.1@aar'
+
+    //Google Libaraies
     compile 'com.google.android.gms:play-services-auth:10.0.1'
-    compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:design:25.1.1'
     compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+
     testCompile 'junit:junit:4.12'
 }
 

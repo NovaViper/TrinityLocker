@@ -1,8 +1,6 @@
 package com.nova.apps.trinitylocker.startup.setup;
 
-import android.app.KeyguardManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.paolorotolo.appintro.ISlideBackgroundColorHolder;
-import com.github.paolorotolo.appintro.ISlidePolicy;
 import com.nova.apps.trinitylocker.R;
 
 //TODO Finish Intro Fragment for LockProfilePicker
@@ -19,7 +16,7 @@ public class UnlockStylePickerFragment extends Fragment implements ISlideBackgro
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.unlock_style_intro, container, false);
+		View v = inflater.inflate(R.layout.intro_unlock_style, container, false);
 		return v;
 	}
 

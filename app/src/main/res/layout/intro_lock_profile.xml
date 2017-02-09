@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#222222"
         android:layout_weight="10"
         android:id="@+id/main">
 
@@ -14,10 +13,9 @@
             android:paddingLeft="32dp"
             android:layout_weight="3"
             android:fontFamily="sans-serif-thin"
-            android:textColor="#ffffff"
             android:paddingRight="32dp"
             android:textSize="28sp"
-            android:text="@string/setupDoneIntro"/>
+            android:text="@string/enableNotifyAccessIntro"/>
 
     <LinearLayout
             android:layout_width="fill_parent"
@@ -32,7 +30,7 @@
                 android:layout_gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:src="@drawable/ic_check_circle_black_24dp"/>
+                android:src="@drawable/ic_notifications_active_black_512"/>
     </LinearLayout>
     <TextView
             android:layout_width="wrap_content"
@@ -40,13 +38,12 @@
             android:layout_weight="3"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#ffffff"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:onClick="enableAccess"
-            android:text="@string/setupFinishedTxt"/>
+            android:text="@string/enableNotifyAccessBtnTxt"/>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="64dp" />

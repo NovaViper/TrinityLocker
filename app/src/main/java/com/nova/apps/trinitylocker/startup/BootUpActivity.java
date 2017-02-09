@@ -22,7 +22,7 @@ public class BootUpActivity extends AppCompatActivity {
                     Thread.sleep(3000);
                     Boolean isFirstRun = getSharedPreferences(Constants.preferenceKey, MODE_PRIVATE).getBoolean(Constants.preferenceFirstRun, true);
                     if(isFirstRun) {
-                        Intent i = new Intent(getApplicationContext(), ChooseSignInActivity.class);
+                        Intent i = new Intent(getApplicationContext(), StartSignInActivity.class);
                         startActivity(i);
                         finish();
                     }else {

@@ -16,7 +16,7 @@ public class LockProfilePickerFragment extends Fragment implements ISlideBackgro
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.lock_profile_intro, container, false);
+		View v = inflater.inflate(R.layout.intro_lock_profile, container, false);
 		return v;
 	}
 

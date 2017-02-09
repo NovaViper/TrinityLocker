@@ -1,12 +1,12 @@
 package com.nova.apps.trinitylocker.core;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,16 +17,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.Status;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -45,10 +38,8 @@ import com.nova.apps.trinitylocker.core.fragment.MiscOptionFragment;
 import com.nova.apps.trinitylocker.core.fragment.NotificationOptionFragment;
 import com.nova.apps.trinitylocker.core.fragment.SecurityOptionFragment;
 import com.nova.apps.trinitylocker.core.fragment.VisualOptionFragment;
-import com.nova.apps.trinitylocker.startup.ChooseSignInActivity;
-import com.nova.apps.trinitylocker.util.AppLogger;
+import com.nova.apps.trinitylocker.startup.StartSignInActivity;
 import com.nova.apps.trinitylocker.util.AuthManager;
-import com.nova.apps.trinitylocker.util.CircleTransform;
 import com.nova.apps.trinitylocker.util.Constants;
 import com.nova.apps.trinitylocker.util.GoogleSignInSingleton;
 
@@ -108,7 +99,7 @@ public class MainSettingsActivity extends AppCompatActivity {
 						if (profile.getIdentifier() == Constants.profileRemoveID) {
 							authManager.signOut();
 							getSharedPreferences(Constants.preferenceKey, MODE_PRIVATE).edit().putBoolean(Constants.preferenceFirstRun, true).commit();
-							Intent i = new Intent(getApplicationContext(), ChooseSignInActivity.class);
+							Intent i = new Intent(getApplicationContext(), StartSignInActivity.class);
 							startActivity(i);
 							finish();
 							Toast.makeText(getApplicationContext(), R.string.debugSignOut, Toast.LENGTH_LONG).show();
@@ -128,11 +119,11 @@ public class MainSettingsActivity extends AppCompatActivity {
 				.withToolbar(toolbar)
 				.withAccountHeader(header)
 				.addDrawerItems(
-						new PrimaryDrawerItem().withName(R.string.nav_lock_profile_text).withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_nav_lock_profile, getApplication().getTheme())).withIdentifier(Constants.navLocker),
-						new PrimaryDrawerItem().withName(R.string.nav_visual_text).withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_menu_gallery, getApplication().getTheme())).withIdentifier(Constants.navVisual),
-						new PrimaryDrawerItem().withName(R.string.nav_notify_text).withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_nav_notify, getApplication().getTheme())).withIdentifier(Constants.navNotify),
-						new PrimaryDrawerItem().withName(R.string.nav_security_text).withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_nav_security, getApplication().getTheme())).withIdentifier(Constants.navSecurity),
-						new PrimaryDrawerItem().withName(R.string.nav_misc_text).withIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_nav_misc, getApplication().getTheme())).withIdentifier(Constants.navMisc),
+						new PrimaryDrawerItem().withName(R.string.nav_lock_profile_text).withIcon(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_view_carousel).color(ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_dark_primary_icon))).withIdentifier(Constants.navLocker),
+						new PrimaryDrawerItem().withName(R.string.nav_visual_text).withIcon(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_photo_library).color(ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_dark_primary_icon))).withIdentifier(Constants.navVisual),
+						new PrimaryDrawerItem().withName(R.string.nav_notify_text).withIcon(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_notifications_active).color(ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_dark_primary_icon))).withIdentifier(Constants.navNotify),
+						new PrimaryDrawerItem().withName(R.string.nav_security_text).withIcon(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_lock).color(ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_dark_primary_icon))).withIdentifier(Constants.navSecurity),
+						new PrimaryDrawerItem().withName(R.string.nav_misc_text).withIcon(new IconicsDrawable(this).icon(GoogleMaterial.Icon.gmd_list).color(ContextCompat.getColor(getApplicationContext(), R.color.material_drawer_dark_primary_icon))).withIdentifier(Constants.navMisc),
 						new DividerDrawerItem(),
 						new PrimaryDrawerItem().withName(R.string.nav_tips_tricks_text).withIdentifier(Constants.navTips),
 						new PrimaryDrawerItem().withName(R.string.nav_backup_restore_text).withIdentifier(Constants.navBackup),

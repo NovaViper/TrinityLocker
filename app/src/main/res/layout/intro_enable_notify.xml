@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#222222"
         android:layout_weight="10"
         android:id="@+id/main">
 
@@ -14,7 +14,6 @@
             android:paddingLeft="32dp"
             android:layout_weight="3"
             android:fontFamily="sans-serif-thin"
-            android:textColor="#ffffff"
             android:paddingRight="32dp"
             android:textSize="28sp"
             android:text="@string/enableNotifyAccessIntro"/>
@@ -26,13 +25,17 @@
             android:gravity="center"
             android:layout_weight="5">
 
-        <ImageView
+        <com.mikepenz.iconics.view.IconicsImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:src="@drawable/ic_notifications_active_black_512"/>
+                android:id="@+id/intro_enablenNotifyImage"
+                app:iiv_size="250dp"
+                app:iiv_color="@color/md_black_1000"
+                app:iiv_icon="@string/gmd_notifications_active"/>
+
     </LinearLayout>
     <TextView
             android:layout_width="wrap_content"
@@ -40,12 +43,12 @@
             android:layout_weight="3"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#ffffff"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:onClick="enableAccess"
+            android:id="@+id/enableAccessTxtBt"
             android:text="@string/enableNotifyAccessBtnTxt"/>
     <TextView
             android:layout_width="fill_parent"

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#222222"
         android:layout_weight="10"
         android:id="@+id/main">
 
@@ -14,7 +13,6 @@
             android:paddingLeft="32dp"
             android:layout_weight="3"
             android:fontFamily="sans-serif-thin"
-            android:textColor="#ffffff"
             android:paddingRight="32dp"
             android:textSize="28sp"
             android:text="@string/enableNotifyAccessIntro"/>
@@ -40,7 +38,6 @@
             android:layout_weight="3"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#ffffff"
             android:paddingLeft="64dp"
             android:paddingRight="64dp"
             android:textSize="16sp"
