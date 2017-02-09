@@ -59,12 +59,12 @@ public class EnableNotificationsFragment extends Fragment implements ISlideBackg
 			return true;
 
 		}*/
-		return false;
+		return true;
 	}
 
 	@Override
 	public void onUserIllegallyRequestedNextPage() {
-		AlertDialogUtil alertDialogUtil = new AlertDialogUtil();
+		/*AlertDialogUtil alertDialogUtil = new AlertDialogUtil();
 
 		alertDialogUtil.showMessageAgreeDisagreeWithTitle(getActivity(), R.string.warnKeepSystemLockOnTitle, R.string.warnKeepSystemLockOn, new AlertDialog.OnClickListener() {
 			@Override
@@ -80,6 +80,6 @@ public class EnableNotificationsFragment extends Fragment implements ISlideBackg
 						break;
 				}
 			}
-		});
+		});*/
 	}
 }

@@ -200,7 +200,7 @@ public class MainSettingsActivity extends AppCompatActivity {
 			String shareBodyText = "Check it out. Your message goes here";
 			sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
 			sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
-			startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+			startActivity(Intent.createChooser(sharingIntent, "Sharing Option"));
 		} else if (id == R.id.action_rate) {
 			return true;
 		} else if (id == R.id.action_support) {
