@@ -35,8 +35,8 @@ prevent all potential security breaches.
 This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to
 our Privacy Policy by posting the new Privacy Policy here and informing you via email or text message.
 You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed
-approval of all changes. You can check the history of this policy available under the following link:
-[]
+approval of all changes. You can check the history of this policy available under the following link: [https://github.com/NovaViper/TrinityLocker]
+
 
 ##Your Consent
 By using this Application, you consent to the terms of our Privacy Policy and to Trinity Locker processing of Personal Information for the purposes given above as well as those explained where Trinity Locker collects Personal Information on the Application.
