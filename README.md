@@ -33,9 +33,9 @@ Currently, I can be contacted through the [email me at the displayed email on my
 ###Project Licenses
 Trinity Locker would not be made possible without the following open-sourced projects. Many thanks to them all!
 
-[MaterialDrawer] by mikepenz(https://github.com/mikepenz/MaterialDrawer#license)
+[MaterialDrawer](https://github.com/mikepenz/MaterialDrawer#license) by mikepenz
 
-[AppIntro License] by apl-devs(https://github.com/apl-devs/AppIntro/blob/master/LICENSE)
+[AppIntro License](https://github.com/apl-devs/AppIntro/blob/master/LICENSE) by apl-devs
 
 
 ###Trinity Locker License
