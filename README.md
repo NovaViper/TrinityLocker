@@ -29,7 +29,17 @@ Want to help translate the app? Go right on ahead, I don't mind it! But be sure 
 ##Communication
 Currently, I can be contacted through the [email me at the displayed email on my profile page](https://github.com/NovaViper). 
 
-##License
+##Credits and License
+###Project Licenses
+Trinity Locker would not be made possible without the following open-sourced projects. Many thanks to them all!
+
+[MaterialDrawer] by mikepenz(https://github.com/mikepenz/MaterialDrawer#license)
+
+[AppIntro License] by apl-devs(https://github.com/apl-devs/AppIntro/blob/master/LICENSE)
+
+
+###Trinity Locker License
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
