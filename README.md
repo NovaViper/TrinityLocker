@@ -38,9 +38,9 @@ Trinity Locker would not be made possible without the following open-sourced pro
 [AppIntro License](https://github.com/apl-devs/AppIntro/blob/master/LICENSE) by apl-devs
 
 
-###Trinity Locker License
+###[Trinity Locker License](https://github.com/NovaViper/TrinityLocker/blob/master/LICENSE)
 
-    Copyright 2017 Nova Leary
+    Copyright 2016 Nova Leary
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
