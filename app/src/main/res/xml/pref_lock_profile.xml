@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+            android:key="lock_customization_builder_page_button"
+            android:title="@string/lock_customization_builder_page_button"
+            android:summary="summary here" >
+        <intent android:targetClass="com.nova.apps.trinitylocker.core.lockscreen.LockScreenShortcutsActivity"
+                android:targetPackage="com.nova.apps.trinitylocker">
+        </intent>
+    </Preference>
+    <Preference
+            android:key="lock_shortcuts_page_button"
+            android:title="@string/lock_shortcuts_page_button"
+            android:summary="summary here" >
+        <intent android:targetClass="com.nova.apps.trinitylocker.core.lockscreen.LockScreenShortcutsActivity"
+                android:targetPackage="com.nova.apps.trinitylocker">
+        </intent>
+    </Preference>
+    <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/smart_unlock_wifi_checkbox"
+            android:key="smart_unlock_wifi" />
+    <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/smart_unlock_bluetooth_checkbox"
+            android:key="smart_unlock_bt" />
+    <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/smart_unlock_location_checkbox"
+            android:key="smart_unlock_location"
+            android:disableDependentsState="false" />
+</PreferenceScreen>

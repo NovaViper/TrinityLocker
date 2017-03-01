@@ -21,7 +21,7 @@ public final class AppLogger {
 
 	/**
 	 * Disables logs for VERBOSE, DEBUG, INFO, WARN levels; called once and preferably from a class that extends 'Application'
-	 * This is useful when you might want to disable log printing before publishing app to the PlayStore
+	 * This is useful when you might want to disable log printing before publishing app to the Play Store
 	 *
 	 * @param value Setting value to true will disable printing logs (Default: false)
 	 */

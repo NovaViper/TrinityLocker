@@ -1,23 +1,15 @@
 package com.nova.apps.trinitylocker.util.access;
 
-import android.annotation.TargetApi;
-import android.app.Notification;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-
-import java.io.ByteArrayOutputStream;
+import com.nova.apps.trinitylocker.util.AppLogger;
 
 //TODO Work on Notificaiton Service Listener
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NLService extends NotificationListenerService {
 
 	Context context;
@@ -27,36 +19,20 @@ public class NLService extends NotificationListenerService {
 		context = getApplicationContext();
 	}
 
-	@TargetApi(Build.VERSION_CODES.KITKAT)
 	public void onNotificationPosted(StatusBarNotification sbn) {
 		String pack = sbn.getPackageName();
-		String ticker = "";
-		if (sbn.getNotification().tickerText != null) {
-			ticker = sbn.getNotification().tickerText.toString();
-		}
-		Bundle extras = sbn.getNotification().extras;
-		String title = extras.getString("android.title");
-		String text = extras.getCharSequence("android.text").toString();
-		int id1 = extras.getInt(Notification.EXTRA_SMALL_ICON);
-		Bitmap id = sbn.getNotification().largeIcon;
 
-		Log.i("Package", pack);
-		Log.i("Ticker", ticker);
-		Log.i("Title", title);
-		Log.i("Text", text);
-
-		Intent msgrcv = new Intent("Msg");
-		msgrcv.putExtra("package", pack);
-		msgrcv.putExtra("ticker", ticker);
-		msgrcv.putExtra("title", title);
-		msgrcv.putExtra("text", text);
-		if (id != null) {
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			id.compress(Bitmap.CompressFormat.PNG, 100, stream);
-			byte[] byteArray = stream.toByteArray();
-			msgrcv.putExtra("icon", byteArray);
+		String text = "";
+		String title = "";
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			Bundle extras = extras = sbn.getNotification().extras;
+			text = extras.getCharSequence("android.text").toString();
+			title = extras.getString("android.title");
 		}
-		LocalBroadcastManager.getInstance(context).sendBroadcast(msgrcv);
+
+		AppLogger.info("Package", pack);
+		AppLogger.info("Title", title);
+		AppLogger.info("Text", text);
 	}
 
 	@Override

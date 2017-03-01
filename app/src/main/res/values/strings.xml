@@ -69,4 +69,12 @@
 
     <string name="action_settings">Settings</string>
 
+    <!-- Prefernces Page Strings -->
+    <!--- Lock Profile -->
+    <string name="lock_customization_builder_page_button">Screen Builder</string>
+    <string name="lock_shortcuts_page_button">Shortcuts</string>
+    <string name="smart_unlock_wifi_checkbox">Smart Unlock - Wifi</string>
+    <string name="smart_unlock_bluetooth_checkbox">Smart Unlock - Bluetooth</string>
+    <string name="smart_unlock_location_checkbox">Smart Unlock - Location</string>
+
 </resources>

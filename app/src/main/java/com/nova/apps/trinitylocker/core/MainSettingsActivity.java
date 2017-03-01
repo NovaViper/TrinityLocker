@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,11 +32,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.nova.apps.trinitylocker.R;
-import com.nova.apps.trinitylocker.core.fragment.LockProfileOptionFragment;
-import com.nova.apps.trinitylocker.core.fragment.MiscOptionFragment;
-import com.nova.apps.trinitylocker.core.fragment.NotificationOptionFragment;
-import com.nova.apps.trinitylocker.core.fragment.SecurityOptionFragment;
-import com.nova.apps.trinitylocker.core.fragment.VisualOptionFragment;
+import com.nova.apps.trinitylocker.core.fragment.LockProfilePref;
 import com.nova.apps.trinitylocker.startup.StartSignInActivity;
 import com.nova.apps.trinitylocker.util.AuthManager;
 import com.nova.apps.trinitylocker.util.Constants;
@@ -136,15 +131,15 @@ public class MainSettingsActivity extends AppCompatActivity {
 						FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 						Intent intent = null;
 						if (drawerItem.getIdentifier() == Constants.navLocker) {
-							fragment = new LockProfileOptionFragment();
+							fragment = new LockProfilePref();
 						} else if (drawerItem.getIdentifier() == Constants.navVisual) {
-							fragment = new VisualOptionFragment();
+							//fragment = new VisualOptionFragment();
 						} else if (drawerItem.getIdentifier() == Constants.navNotify) {
-							fragment = new NotificationOptionFragment();
+							//fragment = new NotificationOptionFragment();
 						} else if (drawerItem.getIdentifier() == Constants.navSecurity) {
-							fragment = new SecurityOptionFragment();
+							//fragment = new SecurityOptionFragment();
 						} else if (drawerItem.getIdentifier() == Constants.navMisc) {
-							fragment = new MiscOptionFragment();
+							//fragment = new MiscOptionFragment();
 						} else if (drawerItem.getIdentifier() == Constants.navTips) {
 
 						} else if (drawerItem.getIdentifier() == Constants.navBackup) {

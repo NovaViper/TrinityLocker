@@ -1,14 +1,48 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    def _versionCode = 0
+    def versionPropsFile = file('version.properties')
+    def Properties versionProps = new Properties()
+    if (versionPropsFile.exists())
+        versionProps.load(new FileInputStream(versionPropsFile))
+    def _patch = (versionProps['PATCH'] ?: "0").toInteger() + 1
+    def _major = (versionProps['MAJOR'] ?: "0").toInteger()
+    def _minor = (versionProps['MINOR'] ?: "0").toInteger()
+    def _minSDK = (versionProps['MINSDK'] ?: "0").toInteger()
+    List<String> runTasks = gradle.startParameter.getTaskNames();
+    def value = 0
+    for (String item : runTasks)
+        if (item.contains("assembleRelease")) {
+            value = 1;
+        }
+    _versionCode = (_minSDK * 1000000 + _major * 10000 + _minor * 100 + _patch).toInteger()
+    if (_patch == 99) {
+        _patch = 0
+        _minor = _minor + 1
+    }
+    if (_major == 99) {
+        _major = 0
+        _major = _major + 1
+    }
+
+    versionProps['MAJOR'] = _major.toString()
+    versionProps['MINOR'] = _minor.toString()
+    versionProps['PATCH'] = _patch.toString()
+    versionProps['VERSION_CODE'] = _versionCode.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+    def _versionName = "${_major}.${_minor}.${_patch}"
+
     compileSdkVersion 25
     buildToolsVersion "24.0.0"
+
     defaultConfig {
         applicationId "com.nova.apps.trinitylocker"
-        minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion _minSDK
+        versionCode _versionCode
+        versionName _versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -36,6 +70,7 @@ dependencies {
     compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
     compile 'com.mikepenz:community-material-typeface:1.7.22.1@aar'
+    compile 'com.takisoft.fix:preference-v7:25.1.1.0'
 
     //Google Libaraies
     compile 'com.google.android.gms:play-services-auth:10.0.1'
@@ -46,8 +81,5 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 }
-
-
-
 
 apply plugin: 'com.google.gms.google-services'
